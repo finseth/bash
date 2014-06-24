@@ -1,80 +1,95 @@
 .bash, .bash *, .bash *:before, .bash *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: none !important;
+	outline:none !important;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
 }
 .bash .button {
-    width: 10px;
-    height: 10px;
-    display: block;
-    border-radius: 100%;
-    float: left;
-    margin:0px 5px;
+	display:block;
+	float:left;
+	width:10px;
+	height:10px;
+	margin:0 5px;
+	border-radius:100%;
 }
 .bash .close {
-	background: #fe6150;
-    border: 1px solid #ea4d3c;
+	background:#fe6150;
+	border:1px solid #ea4d3c;
 }
 .bash .min {
-	background: #ffba00;
-    border: 1px solid #eba600;
+	background:#ffba00;
+	border:1px solid #eba600;
 }
 .bash .max {
-	background: #1acf35;
-    border: 1px solid #06bb21;
+	background:#1acf35;
+	border:1px solid #06bb21;
 }
 .bash .header {
-	background: #e5e5e5;
-	border-radius: 5px 5px 0px 0px;
-	border-bottom: 1px solid #888;
-	padding: 6px;
-    border-radius: 5px 5px 0 0;
+	padding:6px;
+	background:#e5e5e5;
+	border-bottom:1px solid #888;
+	border-radius:5px 5px 0 0px;
+	border-radius:5px 5px 0 0;
 }
 .bash .window {
-	margin: 0 auto;
-	width: 500px;
+	width:100%;
+	max-width:500px;
+	margin:0 auto;
 }
 .bash .maxer {
-	font-size: 20px;
+	display:block;
+	float:right;
+	font-size:20px;
+	line-height:14px;
 	color:#8D8D8D;
+	text-decoration:none;
 	text-shadow:0px 1px 0px #fff;
-	text-decoration: none;
-	-webkit-transform: rotate(-45deg);
-	   -moz-transform: rotate(-45deg);
-	     -o-transform: rotate(-45deg);
-	display: block;
-	float: right;
-	line-height: 14px;
+	-webkit-transform:rotate(-45deg);
+	-moz-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
 }
 .bash .header span {
-	display: block;
-	text-align: center;
+	display:block;
+	padding:0 50px;
+	font-size:13px;
+	font-weight:300;
+	line-height:13px;
 	color:#303030;
-    font-weight: 300;
-	font-size: 13px;
-	padding: 0px 50px;
-	line-height: 13px;
+	text-align:center;
 }
 .bash .terminal {
+	height:274px;
+	padding:8px;
+	overflow:scroll;
+	font-family:'Monaco', monospace;
+	font-size:12px;
+	line-height:16px;
 	color:#fff;
-	padding: 8px;
-    font-family: 'Monaco', monospace;
-    font-size: 12px;
-    line-height: 16px;
-    height: 274px;
-    background: #222220;
-    overflow: scroll;
-    border-radius: 0 0 5px 5px;
+	background:#222220;
+	border-radius:0 0 5px 5px;
 }
 .bash .terminal p {
-    margin: 0;
+	margin:0;
 }
 .bash .terminal span {
-    display: inline-block;
-    width: 150px;
-    white-space: nowrap;
+	display:inline-block;
+	width:150px;
+	white-space:nowrap;
 }
 .bash .terminal span * {
-    display: none;
+	display:none;
+}
+@media (max-width:768px) {
+	.bash .terminal {
+		height:224px;
+	}
+	.bash .header a {
+		display:none;
+	}
+	.bash .header span {
+		padding:0 30px;
+	}
+	.bash .terminal span {
+		width: 60px;
+	}
 }
