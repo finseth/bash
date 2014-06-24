@@ -1,16 +1,10 @@
-*, *:before, *:after {
+.bash, .bash *, .bash *:before, .bash *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     outline: none !important;
 }
-html {
-  height:100%
-}
-body {
-    padding: 40px 0;
-}
-.button {
+.bash .button {
     width: 10px;
     height: 10px;
     display: block;
@@ -18,31 +12,30 @@ body {
     float: left;
     margin:0px 5px;
 }
-.close {
+.bash .close {
 	background: #fe6150;
     border: 1px solid #ea4d3c;
 }
-.min {
+.bash .min {
 	background: #ffba00;
     border: 1px solid #eba600;
 }
-.max {
+.bash .max {
 	background: #1acf35;
     border: 1px solid #06bb21;
 }
-.header {
+.bash .header {
 	background: #e5e5e5;
 	border-radius: 5px 5px 0px 0px;
 	border-bottom: 1px solid #888;
 	padding: 6px;
     border-radius: 5px 5px 0 0;
-
 }
-.window {
+.bash .window {
 	margin: 0 auto;
 	width: 500px;
 }
-.maxer {
+.bash .maxer {
 	font-size: 20px;
 	color:#8D8D8D;
 	text-shadow:0px 1px 0px #fff;
@@ -54,7 +47,7 @@ body {
 	float: right;
 	line-height: 14px;
 }
-.header span {
+.bash .header span {
 	display: block;
 	text-align: center;
 	color:#303030;
@@ -63,7 +56,7 @@ body {
 	padding: 0px 50px;
 	line-height: 13px;
 }
-#terminal {
+.bash .terminal {
 	color:#fff;
 	padding: 8px;
     font-family: 'Monaco', monospace;
@@ -74,14 +67,14 @@ body {
     overflow: scroll;
     border-radius: 0 0 5px 5px;
 }
-#terminal p {
+.bash .terminal p {
     margin: 0;
 }
-#terminal span {
+.bash .terminal span {
     display: inline-block;
     width: 150px;
     white-space: nowrap;
 }
-#terminal span * {
+.bash .terminal span * {
     display: none;
 }

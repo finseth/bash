@@ -1,0 +1,27 @@
+{
+  "name": "bash",
+  "main": "bash.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/haydenbleasel/bash",
+  "authors": [
+    "Hayden Bleasel <haydenbleasel@gmail.com>"
+  ],
+  "description": "Terminal function emulator.",
+  "keywords": [
+    "terminal",
+    "bash",
+    "function",
+    "emulator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.7.0"
+  }
+}

@@ -5,8 +5,8 @@ var bash = function (selector, options) {
 
     'use strict';
 
-    var command = selector.querySelector('#command'),
-        terminal = selector.querySelector('#terminal'),
+    var command = selector.querySelector('.command'),
+        terminal = selector.querySelector('.terminal'),
         content = document.createElement('span'),
         title = options.title || 'user@home:~$ ',
         computer = options.computer || 'ttys000',
@@ -34,7 +34,7 @@ var bash = function (selector, options) {
         header.appendChild(content);
         terminal.appendChild(header);
         terminal.scrollTop = terminal.scrollHeight;
-        command = selector.querySelector('#command');
+        command = selector.querySelector('.command');
         command.focus();
     };
 
