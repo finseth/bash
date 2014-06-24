@@ -29,7 +29,7 @@ var bash = function (selector, options) {
         header = document.createElement('p');
         header.innerHTML = title;
         content = document.createElement('span');
-        content.id = 'command';
+        content.className = 'command';
         content.contentEditable = 'true';
         header.appendChild(content);
         terminal.appendChild(header);
@@ -71,7 +71,7 @@ var bash = function (selector, options) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
             request = command.innerHTML.replace(/&nbsp;/g, '');
-            command.removeAttribute('id');
+            command.removeAttribute('class');
             if (request.replace(/^\s+|\s+$/gm, '') === "") {
                 self.reset();
             } else if (request === options.name) {
