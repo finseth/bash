@@ -32,8 +32,7 @@
 	border-radius:5px 5px 0 0;
 }
 .bash .window {
-	width:100%;
-	max-width:500px;
+	width:500px;
 	margin:0 auto;
 }
 .bash .maxer {
@@ -79,7 +78,7 @@
 .bash .terminal span * {
 	display:none;
 }
-@media (max-width:768px) {
+@media (max-width:500px) {
 	.bash .terminal {
 		height:224px;
 	}
@@ -91,5 +90,8 @@
 	}
 	.bash .terminal span {
 		width: 60px;
+	}
+	.bash .window {
+		width:100%;
 	}
 }
