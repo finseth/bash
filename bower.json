@@ -1,7 +1,7 @@
 {
   "name": "bash",
   "main": "bash.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/haydenbleasel/bash",
   "authors": [
     "Hayden Bleasel <haydenbleasel@gmail.com>"
