@@ -1,5 +1,4 @@
 /*jslint browser:true*/
-/*global moment*/
 
 var bash = function (selector, options) {
 
