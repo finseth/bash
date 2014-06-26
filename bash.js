@@ -16,7 +16,27 @@ var bash = function (selector, options) {
         header,
         output,
         help,
-        self = this;
+        days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        now,
+        self = this,
+        date,
+        month,
+        day,
+        hours,
+        minutes,
+        seconds;
+
+    this.time = function () {
+        now = new Date();
+        day = days[now.getDay()];
+        month = months[now.getMonth()];
+        date = now.getDate();
+        hours = (now.getHours() < 10 ? '0' : '') + now.getHours();
+        minutes = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+        seconds = (now.getSeconds() < 10 ? '0' : '') + now.getSeconds();
+        return day + ' ' + month + ' ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+    };
 
     this.error = function (request) {
         message = document.createElement('p');
@@ -50,7 +70,7 @@ var bash = function (selector, options) {
     this.initialise = function () {
         self = this;
         time = document.createElement('p');
-        time.innerHTML = 'Last login: ' + moment().format("ddd MMM D hh:mm:ss") + ' on ' + computer;
+        time.innerHTML = 'Last login: ' + this.time() + ' on ' + computer;
         setTimeout(function () {
             terminal.appendChild(time);
         }, 300);
@@ -72,9 +92,9 @@ var bash = function (selector, options) {
             command.removeAttribute('contenteditable');
             request = command.innerHTML.replace(/&nbsp;/g, '');
             command.removeAttribute('class');
-            if (request.replace(/^\s+|\s+$/gm, '') === "") {
+            if (request.trim() === "") {
                 self.reset();
-            } else if (request === options.name) {
+            } else if (request.trim() === options.name) {
                 options.function(function () {
                     self.reset();
                 });

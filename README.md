@@ -6,11 +6,7 @@ A terminal function emulator written in CSS3 and Javascript. You can write your 
 
 You can clone or [download](download the latest archive) the repository from GitHub or install through Bower:
 
-
     bower install bash --save
-
-
-Also requires [Moment.js](http://momentjs.com/) (listed as a Bower dependency).
 
 ## Usage
 
