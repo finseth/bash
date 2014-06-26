@@ -10,12 +10,9 @@ var bash = function (selector, options) {
         content = document.createElement('span'),
         title = options.title || 'user@home:~$ ',
         computer = options.computer || 'ttys000',
-        time,
         request,
-        message,
         header,
         output,
-        help,
         days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         now,
@@ -38,13 +35,6 @@ var bash = function (selector, options) {
         return day + ' ' + month + ' ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
     };
 
-    this.error = function (request) {
-        message = document.createElement('p');
-        message.innerHTML = '-bash: ' + request + ': command not found';
-        terminal.appendChild(message);
-        message = undefined;
-    };
-
     this.reset = function () {
         header = document.createElement('p');
         header.innerHTML = title;
@@ -58,32 +48,25 @@ var bash = function (selector, options) {
         command.focus();
     };
 
-    this.post = function (message, delay) {
+    this.post = function (message, delay, next) {
         setTimeout(function () {
             output = document.createElement('p');
             output.innerHTML = message;
             terminal.appendChild(output);
             terminal.scrollTop = terminal.scrollHeight;
+            return next();
         }, delay);
     };
 
     this.initialise = function () {
-        self = this;
-        time = document.createElement('p');
-        time.innerHTML = 'Last login: ' + this.time() + ' on ' + computer;
-        setTimeout(function () {
-            terminal.appendChild(time);
-        }, 300);
-        if (options.help) {
-            help = document.createElement('p');
-            help.innerHTML = options.help;
+        self.post('Last login: ' + this.time() + ' on ' + computer, 300, function () {
+            if (options.help) {
+                self.post(options.help, 150);
+            }
             setTimeout(function () {
-                terminal.appendChild(help);
-            }, 450);
-        }
-        setTimeout(function () {
-            self.reset();
-        }, 600);
+                self.reset();
+            }, 300);
+        });
     };
 
     terminal.addEventListener('keypress', function (e) {
@@ -99,8 +82,9 @@ var bash = function (selector, options) {
                     self.reset();
                 });
             } else {
-                self.error(request);
-                self.reset();
+                self.post('-bash: ' + request + ': command not found', 0, function () {
+                    self.reset();
+                });
             }
         }
     });
