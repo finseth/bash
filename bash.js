@@ -53,7 +53,9 @@ var bash = function (selector, options) {
             output.innerHTML = message;
             terminal.appendChild(output);
             terminal.scrollTop = terminal.scrollHeight;
-            return next();
+            if (next) {
+                return next();
+            }
         }, delay);
     };
 
