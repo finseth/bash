@@ -33,7 +33,7 @@ Add the scaffolding to your HTML:
 Execute Bash.js by creating a new instance:
 
     var container = document.querySelector('.bash');
-    var bsh = new bash(container, {
+    var bsh = new Bash(container, {
         name: 'gulp',
         function: function(next) {
             lestrade(next);

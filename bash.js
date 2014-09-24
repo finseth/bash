@@ -1,6 +1,6 @@
 /*jslint browser:true*/
 
-var bash = function (selector, options) {
+var Bash = function (selector, options) {
 
     'use strict';
 
@@ -11,33 +11,29 @@ var bash = function (selector, options) {
         computer = options.computer || 'ttys000',
         history = [],
         current = history.length,
-        request,
-        header,
-        output,
-        days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        now,
-        self = this,
-        date,
-        month,
-        day,
-        hours,
-        minutes,
-        seconds;
+        self = this;
+
+    if (!String.prototype.trim) {
+        String.prototype.trim = function () {
+            return this.replace(/^[\s\xA0]+|[\s\xA0]+$/g, '');
+        };
+    }
 
     this.time = function () {
-        now = new Date();
-        day = days[now.getDay()];
-        month = months[now.getMonth()];
-        date = now.getDate();
-        hours = (now.getHours() < 10 ? '0' : '') + now.getHours();
-        minutes = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-        seconds = (now.getSeconds() < 10 ? '0' : '') + now.getSeconds();
+        var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            now = new Date(),
+            day = days[now.getDay()],
+            month = months[now.getMonth()],
+            date = now.getDate(),
+            hours = (now.getHours() < 10 ? '0' : '') + now.getHours(),
+            minutes = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes(),
+            seconds = (now.getSeconds() < 10 ? '0' : '') + now.getSeconds();
         return day + ' ' + month + ' ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
     };
 
     this.reset = function () {
-        header = document.createElement('p');
+        var header = document.createElement('p');
         header.innerHTML = title;
         content = document.createElement('span');
         content.className = 'command';
@@ -50,6 +46,7 @@ var bash = function (selector, options) {
     };
 
     this.post = function (message, delay, next) {
+        var output;
         setTimeout(function () {
             output = document.createElement('p');
             output.innerHTML = message;
@@ -73,7 +70,8 @@ var bash = function (selector, options) {
     };
 
     terminal.addEventListener('keydown', function (e) {
-        var key = e.keyCode;
+        var key = e.keyCode,
+            request;
         if (key === 13) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
