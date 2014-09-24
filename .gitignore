@@ -3,3 +3,6 @@
 ### Bower ###
 bower_components
 
+
+### Custom ###
+*.html

@@ -9,6 +9,8 @@ var bash = function (selector, options) {
         content = document.createElement('span'),
         title = options.title || 'user@home:~$ ',
         computer = options.computer || 'ttys000',
+        history = [],
+        current = history.length,
         request,
         header,
         output,
@@ -70,8 +72,9 @@ var bash = function (selector, options) {
         });
     };
 
-    terminal.addEventListener('keypress', function (e) {
-        if (e.keyCode === 13) {
+    terminal.addEventListener('keydown', function (e) {
+        var key = e.keyCode;
+        if (key === 13) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
             request = command.innerHTML.replace(/&nbsp;/g, '');
@@ -81,12 +84,22 @@ var bash = function (selector, options) {
             } else if (request.trim() === options.name) {
                 options.function(function () {
                     self.reset();
+                    history.push(request);
+                    current = history.length;
                 });
             } else {
                 self.post('-bash: ' + request + ': command not found', 0, function () {
                     self.reset();
+                    history.push(request);
+                    current = history.length;
                 });
             }
+        } else if (key === 38 && current > 0) {
+            current -= 1;
+            command.innerHTML = history[current];
+        } else if (key === 40 && current < history.length - 1) {
+            current += 1;
+            command.innerHTML = history[current];
         }
     });
 
