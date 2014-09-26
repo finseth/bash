@@ -101,7 +101,7 @@ var Bash = function (selector, options) {
     this.start = function () {
         self.post('Last login: ' + this.time() + ' on ' + computer, 300, false, true, function () {
             if (help) {
-                self.post(help, 150);
+                self.post(help, 150, false, true);
             }
             setTimeout(function () {
                 self.reset();
