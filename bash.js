@@ -86,22 +86,23 @@ var Bash = function (selector, options) {
 
     terminal.addEventListener('keydown', function (e) {
         var key = e.keyCode,
-            request;
+            request,
+            i;
         if (key === 13) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
-            request = command.innerHTML.replace(/&nbsp;/g, '');
+            request = command.innerHTML.trim();
             command.removeAttribute('class');
-            if (request.trim() === "") {
+            if (request === "") {
                 self.reset();
-            } else if (request.trim() === options.name) {
+            } else if (request === options.name) {
                 options.function(function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
                 });
             } else {
-                self.post('-bash: ' + request + ': command not found', 0, function () {
+                self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
