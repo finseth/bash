@@ -31,13 +31,26 @@ var Bash = function (selector, options) {
         return day + ' ' + month + ' ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
     };
 
+    this.createPrompt = function (string, index) {
+        var symbol = document.createElement('span');
+        symbol.className = 'prompt prompt-' + index;
+        symbol.innerHTML = string.trim() + ' ';
+        return symbol;
+    };
+
     this.reset = function () {
         var header = document.createElement('p'),
-            symbol = document.createElement('span'),
-            input = document.createElement('span');
-        symbol.className = 'prompt';
-        symbol.innerHTML = prompt.trim() + ' ';
-        header.appendChild(symbol);
+            input = document.createElement('span'),
+            i;
+
+        if (typeof prompt === 'string') {
+            header.appendChild(this.createPrompt(prompt), 0);
+        } else {
+            for (i = 0; i < prompt.length; i += 1) {
+                header.appendChild(this.createPrompt(prompt[i], i));
+            }
+        }
+
         input.className = 'command';
         input.contentEditable = 'true';
         header.appendChild(input);
