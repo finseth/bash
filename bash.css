@@ -78,6 +78,11 @@
 .bash .terminal .command * {
     display:none;
 }
+.bash .terminal .spacer {
+    width: 100%;
+    display: block;
+    content: "";
+}
 @media (max-width:500px) {
     .bash .terminal {
         height:224px;

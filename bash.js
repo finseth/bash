@@ -76,6 +76,14 @@ var Bash = function (selector, options) {
         }, delay);
     };
 
+    self.clear = function (next) {
+        var spacer = document.createElement('br');
+        spacer.className = 'spacer';
+        spacer.style.height = terminal.clientHeight - 40 + 'px';
+        terminal.appendChild(spacer);
+        return next() || true;
+    };
+
     this.initialise = function () {
         self.post('Last login: ' + this.time() + ' on ' + computer, 300, true, function () {
             if (options.help) {
@@ -89,8 +97,7 @@ var Bash = function (selector, options) {
 
     terminal.addEventListener('keydown', function (e) {
         var key = e.keyCode,
-            request,
-            i;
+            request;
         if (key === 13) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
@@ -103,6 +110,10 @@ var Bash = function (selector, options) {
                     self.reset();
                     history.push(request);
                     current = history.length;
+                });
+            } else if (request === 'clear') {
+                self.clear(function () {
+                    self.reset();
                 });
             } else {
                 self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, true, function () {
