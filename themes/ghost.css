@@ -1,0 +1,27 @@
+.bash .close, .bash .min, .bash .max {
+    background:#fff;
+    border:1px solid #ccc;
+}
+.bash .header {
+    padding:10px 20px;
+    background: #efefef;
+}
+.bash .terminal {
+    padding: 20px;
+    background:#2D3032;
+    font-family: Menlo, Monaco, 'DejaVu Sans Mono', 'Courier New', monospace, serif;
+    font-size:14px;
+    line-height:18px;
+}
+.bash .terminal {
+    color: #FFF49D;
+}
+.bash .terminal .prompt {
+    color: #f2a925;
+}
+.bash .terminal .prompt-0 {
+    color: #5ba4e5;
+}
+.bash .terminal .feedback {
+    color: #7E878B;
+}
