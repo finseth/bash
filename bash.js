@@ -111,7 +111,8 @@ var Bash = function (selector, options) {
 
     terminal.addEventListener('keydown', function (e) {
         var key = e.keyCode,
-            request;
+            request,
+            message;
         if (key === 13) {
             e.preventDefault();
             command.removeAttribute('contenteditable');
@@ -130,7 +131,8 @@ var Bash = function (selector, options) {
                     self.reset();
                 });
             } else if (request.split(' ')[0] === 'echo') {
-                self.post(request.split(' ').splice(1).join(' '), 0, false, true, function () {
+                message = request.split(' ').splice(1).join(' ');
+                self.post(message === '' ? '&nbsp;' : message, 0, false, true, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
