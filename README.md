@@ -4,7 +4,7 @@ A lightweight terminal emulator written in CSS3 and Javascript. You can write yo
 
 ## Getting Started
 
-You can clone or [download](download the latest archive) the repository from GitHub or install through Bower:
+You can clone or [download](https://github.com/haydenbleasel/bash/archive/master.zip) the repository from GitHub or install through Bower:
 
     bower install bash --save
 
@@ -30,7 +30,7 @@ Add the scaffolding to your HTML:
         </div>
     </div>
 
-You can also include a theme CSS file located in the `themes` folder. Execute Bash.js by creating a new instance. The `bash` object accepts a selector (usually `.bash`) and an array of options. A demo with defaults is show below:
+You can also include a theme CSS file after the core which are located in the `themes` folder. Execute Bash.js by creating a new instance. The `bash` object accepts a selector (usually `.bash`) and an array of options. A demo with defaults is show below:
 
     var container = document.querySelector('.bash');
     var bsh = new Bash(container, {
@@ -63,7 +63,7 @@ The `bash.post` function takes five parameters as shown in the previous example.
 
 this.post = function (message, delay, symbol, feedback, next) {
 
-# Example
+## Examples
 
 An example of a custom function that runs a Gruntfile:
 
