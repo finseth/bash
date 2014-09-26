@@ -70,12 +70,12 @@
 .bash .terminal p {
     margin:0;
 }
-.bash .terminal span {
+.bash .terminal .command {
     display:inline-block;
     width:150px;
     white-space:nowrap;
 }
-.bash .terminal span * {
+.bash .terminal .command * {
     display:none;
 }
 @media (max-width:500px) {

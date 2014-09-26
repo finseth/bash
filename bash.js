@@ -6,8 +6,7 @@ var Bash = function (selector, options) {
 
     var command = selector.querySelector('.command'),
         terminal = selector.querySelector('.terminal'),
-        content = document.createElement('span'),
-        title = options.title || 'user@home:~$ ',
+        prompt = options.prompt || 'user@home:~$',
         computer = options.computer || 'ttys000',
         history = [],
         current = history.length,
@@ -33,12 +32,15 @@ var Bash = function (selector, options) {
     };
 
     this.reset = function () {
-        var header = document.createElement('p');
-        header.innerHTML = title;
-        content = document.createElement('span');
-        content.className = 'command';
-        content.contentEditable = 'true';
-        header.appendChild(content);
+        var header = document.createElement('p'),
+            symbol = document.createElement('span'),
+            input = document.createElement('span');
+        symbol.className = 'prompt';
+        symbol.innerHTML = prompt.trim() + ' ';
+        header.appendChild(symbol);
+        input.className = 'command';
+        input.contentEditable = 'true';
+        header.appendChild(input);
         terminal.appendChild(header);
         terminal.scrollTop = terminal.scrollHeight;
         command = selector.querySelector('.command');
