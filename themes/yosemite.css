@@ -1,0 +1,22 @@
+.bash .close {
+	background:#fe6150;
+	border:1px solid #ea4d3c;
+}
+.bash .min {
+	background:#ffba00;
+	border:1px solid #eba600;
+}
+.bash .max {
+	background:#1acf35;
+	border:1px solid #06bb21;
+}
+.bash .header {
+	padding:6px;
+	border-bottom:1px solid #888;
+}
+.bash .header .title {
+	font-weight:300;
+}
+.bash .terminal {
+	background:#222220;
+}
