@@ -60,10 +60,13 @@ var Bash = function (selector, options) {
         command.focus();
     };
 
-    this.post = function (message, delay, next) {
+    this.post = function (message, delay, feedback, next) {
         var output;
         setTimeout(function () {
             output = document.createElement('p');
+            if (feedback) {
+                output.className = 'feedback';
+            }
             output.innerHTML = message;
             terminal.appendChild(output);
             terminal.scrollTop = terminal.scrollHeight;
@@ -74,7 +77,7 @@ var Bash = function (selector, options) {
     };
 
     this.initialise = function () {
-        self.post('Last login: ' + this.time() + ' on ' + computer, 300, function () {
+        self.post('Last login: ' + this.time() + ' on ' + computer, 300, true, function () {
             if (options.help) {
                 self.post(options.help, 150);
             }
@@ -102,7 +105,7 @@ var Bash = function (selector, options) {
                     current = history.length;
                 });
             } else {
-                self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, function () {
+                self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, true, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
