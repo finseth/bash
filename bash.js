@@ -8,6 +8,7 @@ var Bash = function (selector, options) {
         terminal = selector.querySelector('.terminal'),
         prompt = options.prompt || 'user@home:~$',
         computer = options.computer || 'ttys000',
+        demo = options.mode || false,
         history = [],
         current = history.length,
         self = this;
@@ -84,7 +85,7 @@ var Bash = function (selector, options) {
         return next() || true;
     };
 
-    this.initialise = function () {
+    this.start = function () {
         self.post('Last login: ' + this.time() + ' on ' + computer, 300, true, function () {
             if (options.help) {
                 self.post(options.help, 150);
@@ -106,7 +107,7 @@ var Bash = function (selector, options) {
             if (request === "") {
                 self.reset();
             } else if (request === options.name) {
-                options.function(function () {
+                options.function(self, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
@@ -130,6 +131,14 @@ var Bash = function (selector, options) {
             command.innerHTML = history[current];
         }
     });
+
+    this.initialise = function () {
+        if (options.demo && options.function) {
+            options.function(self);
+        } else {
+            self.start();
+        }
+    };
 
     this.initialise();
 
