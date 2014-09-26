@@ -1,0 +1,20 @@
+.bash .close, .bash .min, .bash .max {
+    background:rgba(0, 0, 0, 0.6);
+    border:none;
+}
+.bash .maxer {
+    color:rgba(0, 0, 0, 0.6);
+}
+.bash .header {
+    padding:10px 20px;
+    background: rgba(222, 222, 222, 0.5);
+}
+.bash .terminal {
+    padding: 20px;
+    background:rgba(0, 0, 0, 0.6);
+    font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+    line-height:18px;
+}
+.bash .terminal {
+    color: #c7c7c7;
+}
