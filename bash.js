@@ -8,7 +8,6 @@ var Bash = function (selector, options) {
         terminal = selector.querySelector('.terminal'),
         prompt = options.prompt || 'user@home:~$',
         computer = options.computer || 'ttys000',
-        demo = options.mode || false,
         history = [],
         current = history.length,
         self = this;
@@ -39,19 +38,21 @@ var Bash = function (selector, options) {
         return symbol;
     };
 
-    this.reset = function () {
-        var header = document.createElement('p'),
-            input = document.createElement('span'),
-            i;
-
+    this.addPrompts = function (element) {
+        var i;
         if (typeof prompt === 'string') {
-            header.appendChild(this.createPrompt(prompt), 0);
+            element.appendChild(self.createPrompt(prompt), 0);
         } else {
             for (i = 0; i < prompt.length; i += 1) {
-                header.appendChild(this.createPrompt(prompt[i], i));
+                element.appendChild(self.createPrompt(prompt[i], i));
             }
         }
+    };
 
+    this.reset = function () {
+        var header = document.createElement('p'),
+            input = document.createElement('span');
+        self.addPrompts(header);
         input.className = 'command';
         input.contentEditable = 'true';
         header.appendChild(input);
@@ -61,14 +62,17 @@ var Bash = function (selector, options) {
         command.focus();
     };
 
-    this.post = function (message, delay, feedback, next) {
+    this.post = function (message, delay, symbol, feedback, next) {
         var output;
         setTimeout(function () {
             output = document.createElement('p');
             if (feedback) {
                 output.className = 'feedback';
             }
-            output.innerHTML = message;
+            if (options.demo && symbol) {
+                self.addPrompts(output);
+            }
+            output.innerHTML = output.innerHTML + ' ' + message;
             terminal.appendChild(output);
             terminal.scrollTop = terminal.scrollHeight;
             if (next) {
@@ -86,7 +90,7 @@ var Bash = function (selector, options) {
     };
 
     this.start = function () {
-        self.post('Last login: ' + this.time() + ' on ' + computer, 300, true, function () {
+        self.post('Last login: ' + this.time() + ' on ' + computer, 300, false, true, function () {
             if (options.help) {
                 self.post(options.help, 150);
             }
@@ -117,7 +121,7 @@ var Bash = function (selector, options) {
                     self.reset();
                 });
             } else {
-                self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, true, function () {
+                self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, false, true, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
