@@ -60,8 +60,7 @@ The `bash.post` function takes five parameters as shown in the previous example.
         function () { ...   // The callback, fired once the message is posted.
     );
 
-
-this.post = function (message, delay, symbol, feedback, next) {
+You can use the `echo` and `clear` commands.
 
 ## Examples
 

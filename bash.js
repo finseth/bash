@@ -129,6 +129,12 @@ var Bash = function (selector, options) {
                 self.clear(function () {
                     self.reset();
                 });
+            } else if (request.split(' ')[0] === 'echo') {
+                self.post(request.split(' ').splice(1).join(' '), 0, false, true, function () {
+                    self.reset();
+                    history.push(request);
+                    current = history.length;
+                });
             } else {
                 self.post('-bash: ' + request.split(' ')[0] + ': command not found', 0, false, true, function () {
                     self.reset();
