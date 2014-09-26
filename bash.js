@@ -147,7 +147,9 @@ var Bash = function (selector, options) {
 
     this.initialise = function () {
         if (demo && func) {
-            func(self);
+            func(self, function () {
+                return true;
+            });
         } else {
             self.start();
         }
