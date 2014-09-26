@@ -4,10 +4,19 @@ var Bash = function (selector, options) {
 
     'use strict';
 
+        // Selectors
     var command = selector.querySelector('.command'),
         terminal = selector.querySelector('.terminal'),
-        prompt = options.prompt || 'user@home:~$',
+
+        // Options
         computer = options.computer || 'ttys000',
+        help = options.help || undefined,
+        prompt = options.prompt || 'user@home:~$',
+        name = options.name || undefined,
+        func = options.function || undefined,
+        demo = options.demo || false,
+
+        // Variables
         history = [],
         current = history.length,
         self = this;
@@ -69,7 +78,7 @@ var Bash = function (selector, options) {
             if (feedback) {
                 output.className = 'feedback';
             }
-            if (options.demo && symbol) {
+            if (demo && symbol) {
                 self.addPrompts(output);
             }
             output.innerHTML = output.innerHTML + ' ' + message;
@@ -91,8 +100,8 @@ var Bash = function (selector, options) {
 
     this.start = function () {
         self.post('Last login: ' + this.time() + ' on ' + computer, 300, false, true, function () {
-            if (options.help) {
-                self.post(options.help, 150);
+            if (help) {
+                self.post(help, 150);
             }
             setTimeout(function () {
                 self.reset();
@@ -110,8 +119,8 @@ var Bash = function (selector, options) {
             command.removeAttribute('class');
             if (request === "") {
                 self.reset();
-            } else if (request === options.name) {
-                options.function(self, function () {
+            } else if (request === name) {
+                func(self, function () {
                     self.reset();
                     history.push(request);
                     current = history.length;
@@ -137,8 +146,8 @@ var Bash = function (selector, options) {
     });
 
     this.initialise = function () {
-        if (options.demo && options.function) {
-            options.function(self);
+        if (demo && func) {
+            func(self);
         } else {
             self.start();
         }
